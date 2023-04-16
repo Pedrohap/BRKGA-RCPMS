@@ -1,0 +1,36 @@
+Maquina 0:
+Indice da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+6 0 2 S 8 5 4 
+Molde da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+0 0 0 S 2 2 2 
+Tempo para a execução da tarefa: (O tempo da troca e da espera é demonstrado visualmente)
+3 1 3 1 1 4 2 
+Tempo em que a tarefa foi executada: (OBS: O tempo da troca é contabilizado, mas não é mostrado individualmente como nos resultados superiores)
+3 4 7 S 9 13 15 
+TFT da Máquina: 51
+Makespan da Máquina: 15
+Quantidades de trocas da Máquina: 1
+Tempo total de espera da Máquina: 0
+-----------------------------------------------------------------
+Maquina 1:
+Indice da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+9 3 7 1 
+Molde da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+1 1 1 1 
+Tempo para a execução da tarefa: (O tempo da troca e da espera é demonstrado visualmente)
+6 5 2 2 
+Tempo em que a tarefa foi executada: (OBS: O tempo da troca é contabilizado, mas não é mostrado individualmente como nos resultados superiores)
+6 11 13 15 
+TFT da Máquina: 45
+Makespan da Máquina: 15
+Quantidades de trocas da Máquina: 0
+Tempo total de espera da Máquina: 0
+-----------------------------------------------------------------
+TFT: 96
+Makespan: 15
+Quantidade de trocas: 1
+Tempo de espera total: 0
+
+Tempo de execução: 0.274182(s)
+Melhor Geração: 2
+Total de Gerações: 1000

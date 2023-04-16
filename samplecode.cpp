@@ -55,7 +55,7 @@ int main(int argc, char* argv[]) {
 	const double pm = 0.10;		// fraction of population to be replaced by mutants
 	const double rhoe = 0.70;	// probability that offspring inherit an allele from elite parent
 	const unsigned K = 3;		// number of independent populations
-	const unsigned MAXT = 2;	// number of threads for parallel decoding
+	const unsigned MAXT = 4;	// number of threads for parallel decoding
 	
 	SampleDecoder decoder;			// initialize the decoder
 
@@ -75,7 +75,7 @@ int main(int argc, char* argv[]) {
 	unsigned generation = 0;		// current generation
 	const unsigned X_INTVL = 100;	// exchange best individuals at every 100 generations
 	const unsigned X_NUMBER = 2;	// exchange top 2 best
-	const unsigned MAX_GENS = 1000;	// run for 1000 gens
+	const unsigned MAX_GENS = 10000;	// run for 1000 gens
 
 	int best_generation;
 	double best_fitness;
@@ -113,8 +113,11 @@ int main(int argc, char* argv[]) {
 
 	vector <vector <int>> solucao = rcpms.decodificador(chosen_one);
 
-	//rcpms.print_detalhado(solucao);
-	
+	//Debug Printing
+	//rcpms.print_detalhado(solucao,time_span.count(),best_generation,MAX_GENS);
+	//End of debug Printin
+
+	//Csv data export
 	rcpms.csv_export(solucao,time_span.count(),best_generation,MAX_GENS);
 	
 	return 0;

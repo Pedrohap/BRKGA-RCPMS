@@ -1,0 +1,120 @@
+Maquina 0:
+Indice da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+62 155 44 S 71 S 89 85 S 110 23 S 8 12 40 158 15 S 185 72 172 168 104 115 96 3 53 56 195 20 45 34 162 163 39 1 
+Molde da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+8 8 8 S 2 S 0 0 S 4 4 S 6 6 6 6 6 S 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 
+Tempo para a execução da tarefa: (O tempo da troca e da espera é demonstrado visualmente)
+40 29 53 68 11 68 46 52 68 41 33 68 11 48 56 18 16 68 7 34 29 46 20 26 38 49 19 48 34 8 2 14 22 26 42 26 
+Tempo em que a tarefa foi executada: (OBS: O tempo da troca é contabilizado, mas não é mostrado individualmente como nos resultados superiores)
+40 69 122 S 201 S 315 367 S 476 509 S 588 636 692 710 726 S 801 835 864 910 930 956 994 1043 1062 1110 1144 1152 1154 1168 1190 1216 1258 1284 
+TFT da Máquina: 24522
+Makespan da Máquina: 1284
+Quantidades de trocas da Máquina: 5
+Tempo total de espera da Máquina: 0
+-----------------------------------------------------------------
+Maquina 1:
+Indice da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+63 67 31 W S 87 123 102 182 W S 33 130 134 189 156 36 W S 17 135 32 127 153 70 107 154 131 109 83 76 180 103 97 18 129 
+Molde da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+4 4 4 W S 2 2 2 2 W S 4 4 4 4 4 4 W S 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
+Tempo para a execução da tarefa: (O tempo da troca e da espera é demonstrado visualmente)
+2 1 12 186 68 53 53 26 59 49 68 10 30 24 58 9 9 9 68 25 23 31 39 15 13 41 41 30 49 16 13 44 44 55 5 4 
+Tempo em que a tarefa foi executada: (OBS: O tempo da troca é contabilizado, mas não é mostrado individualmente como nos resultados superiores)
+2 3 15 W S 322 375 401 460 W S 587 617 641 699 708 717 W S 819 842 873 912 927 940 981 1022 1052 1101 1117 1130 1174 1218 1273 1278 1282 
+TFT da Máquina: 23488
+Makespan da Máquina: 1282
+Quantidades de trocas da Máquina: 3
+Tempo total de espera da Máquina: 244
+-----------------------------------------------------------------
+Maquina 2:
+Indice da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+184 S 114 S 9 69 139 95 S 81 136 145 197 190 10 42 W S 119 14 128 21 75 47 79 7 186 S 90 25 55 147 151 122 
+Molde da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+5 S 7 S 3 3 3 3 S 8 8 8 8 8 8 8 W S 2 2 2 2 2 2 2 2 2 S 1 1 1 1 1 1 
+Tempo para a execução da tarefa: (O tempo da troca e da espera é demonstrado visualmente)
+55 68 58 68 52 41 44 45 68 10 31 43 21 35 21 2 80 68 13 25 57 37 44 20 40 14 31 68 40 2 22 6 30 25 
+Tempo em que a tarefa foi executada: (OBS: O tempo da troca é contabilizado, mas não é mostrado individualmente como nos resultados superiores)
+55 S 181 S 301 342 386 431 S 509 540 583 604 639 660 662 W S 823 848 905 942 986 1006 1046 1060 1091 S 1199 1201 1223 1229 1259 1284 
+TFT da Máquina: 21995
+Makespan da Máquina: 1284
+Quantidades de trocas da Máquina: 5
+Tempo total de espera da Máquina: 80
+-----------------------------------------------------------------
+Maquina 3:
+Indice da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+181 170 S 68 84 49 W S 198 6 100 77 101 171 194 S 74 50 99 159 142 138 148 48 S 179 94 111 
+Molde da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+3 3 S 6 6 6 W S 3 3 3 3 3 3 3 S 7 7 7 7 7 7 7 7 S 5 5 5 
+Tempo para a execução da tarefa: (O tempo da troca e da espera é demonstrado visualmente)
+3 29 68 33 53 10 235 68 28 58 26 21 56 45 7 68 29 48 54 37 37 40 10 47 68 57 16 28 
+Tempo em que a tarefa foi executada: (OBS: O tempo da troca é contabilizado, mas não é mostrado individualmente como nos resultados superiores)
+3 32 S 133 186 196 W S 527 585 611 632 688 733 740 S 837 885 939 976 1013 1053 1063 1110 S 1235 1251 1279 
+TFT da Máquina: 16707
+Makespan da Máquina: 1279
+Quantidades de trocas da Máquina: 4
+Tempo total de espera da Máquina: 235
+-----------------------------------------------------------------
+Maquina 4:
+Indice da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+58 91 W S 174 78 37 S 22 S 19 S 166 41 165 28 W S 16 106 57 188 196 108 192 117 S 52 120 150 183 132 
+Molde da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+0 0 W S 7 7 7 S 0 S 2 S 5 5 5 5 W S 3 3 3 3 3 3 3 3 S 4 4 4 4 4 
+Tempo para a execução da tarefa: (O tempo da troca e da espera é demonstrado visualmente)
+30 54 97 68 31 52 39 68 31 68 5 68 25 26 2 54 22 68 36 52 57 36 55 50 35 4 68 15 3 29 26 8 
+Tempo em que a tarefa foi executada: (OBS: O tempo da troca é contabilizado, mas não é mostrado individualmente como nos resultados superiores)
+30 84 W S 280 332 371 S 470 S 543 S 636 662 664 718 W S 844 896 953 989 1044 1094 1129 1133 S 1216 1219 1248 1274 1282 
+TFT da Máquina: 19111
+Makespan da Máquina: 1282
+Quantidades de trocas da Máquina: 6
+Tempo total de espera da Máquina: 119
+-----------------------------------------------------------------
+Maquina 5:
+Indice da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+187 W S 93 64 S 80 43 118 164 W S 121 26 116 59 S 143 112 S 51 105 157 92 176 
+Molde da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+1 W S 0 0 S 5 5 5 5 W S 2 2 2 2 S 5 5 S 4 4 4 4 4 
+Tempo para a execução da tarefa: (O tempo da troca e da espera é demonstrado visualmente)
+45 39 68 9 29 68 16 17 11 9 232 68 24 41 52 14 68 49 49 68 51 8 23 18 20 
+Tempo em que a tarefa foi executada: (OBS: O tempo da troca é contabilizado, mas não é mostrado individualmente como nos resultados superiores)
+45 W S 161 190 S 274 291 302 311 W S 635 676 728 742 S 859 908 S 1027 1035 1058 1076 1096 
+TFT da Máquina: 11414
+Makespan da Máquina: 1096
+Quantidades de trocas da Máquina: 5
+Tempo total de espera da Máquina: 271
+-----------------------------------------------------------------
+Maquina 6:
+Indice da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+178 S 146 S 152 46 54 29 W S 73 5 98 141 124 66 113 144 60 W S 140 173 137 0 
+Molde da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+7 S 3 S 4 4 4 4 W S 0 0 0 0 0 0 0 0 0 W S 5 5 5 5 
+Tempo para a execução da tarefa: (O tempo da troca e da espera é demonstrado visualmente)
+46 68 10 68 39 31 14 36 158 68 5 1 4 16 30 58 54 42 19 141 68 33 19 58 20 
+Tempo em que a tarefa foi executada: (OBS: O tempo da troca é contabilizado, mas não é mostrado individualmente como nos resultados superiores)
+46 S 124 S 231 262 276 312 W S 543 544 548 564 594 652 706 748 767 W S 1009 1028 1086 1106 
+TFT da Máquina: 11146
+Makespan da Máquina: 1106
+Quantidades de trocas da Máquina: 4
+Tempo total de espera da Máquina: 299
+-----------------------------------------------------------------
+Maquina 7:
+Indice da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+161 191 S 86 38 175 30 88 W S 65 61 193 4 2 S 167 24 149 160 125 13 126 S 11 82 169 177 133 W S 199 27 35 
+Molde da tarefa: (S: Significa uma troca, W: Significa que ocorreu uma espera)
+2 2 S 1 1 1 1 1 W S 7 7 7 7 7 S 1 1 1 1 1 1 1 S 0 0 0 0 0 W S 2 2 2 
+Tempo para a execução da tarefa: (O tempo da troca e da espera é demonstrado visualmente)
+19 45 68 53 48 18 1 42 77 68 42 37 7 32 15 68 25 30 51 30 17 35 18 68 59 22 22 13 28 33 68 9 9 2 
+Tempo em que a tarefa foi executada: (OBS: O tempo da troca é contabilizado, mas não é mostrado individualmente como nos resultados superiores)
+19 64 S 185 233 251 252 294 W S 481 518 525 557 572 S 665 695 746 776 793 828 846 S 973 995 1017 1030 1058 W S 1168 1177 1179 
+TFT da Máquina: 17897
+Makespan da Máquina: 1179
+Quantidades de trocas da Máquina: 5
+Tempo total de espera da Máquina: 110
+-----------------------------------------------------------------
+TFT: 146280
+Makespan: 1284
+Quantidade de trocas: 37
+Tempo de espera total: 1358
+
+Tempo de execução: 74.5852(s)
+Melhor Geração: 922
+Total de Gerações: 1000

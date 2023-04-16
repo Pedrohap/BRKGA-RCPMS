@@ -57,64 +57,122 @@ int getMaquina(double gene){
 
 //Retorna um vector de int que contem o tft de uma solução
 int funcao_avaliativa(vector <vector <int>> solucao){
-    vector < vector < pair < int,int > > > maquinas (m);
+    int trocas = 0;
+    int tempo_de_espera = 0;
+    vector<int> tempo_da_tarefa_executada(n,0);
+    vector< pair <char,int> > troca_espera(n,make_pair ('N',0));
+    vector <int> global_makespans(m,0);
+    vector <int> global_tft(m,0);
+    vector <int> global_qtd_trocas(m,0);
+    vector <int> global_tempo_espera_total(m,0);
 
-    for (int i = 0 ; i < m; i++){
-        for (int j = 0 ; j < solucao[i].size() ; j++){
-            maquinas[i].push_back(make_pair (moldes[solucao[i][j]],tarefas[solucao[i][j]]));
+
+        vector < vector < pair < int,int > > > maquinas (m);
+
+        for (int i = 0 ; i < m; i++){
+            for (int j = 0 ; j < solucao[i].size() ; j++){
+                maquinas[i].push_back(make_pair (moldes[solucao[i][j]],tarefas[solucao[i][j]]));
+            }
         }
-    }
 
-    vector < pair <int,int> > controlador_moldes (t, make_pair(-1,0));
-    vector <int> tempo_maquinas(m,0);
-    vector <int> molde_na_maquina(m,-1);
-    vector <int> tft (m,0);
+        vector < pair <int,int> > controlador_moldes (t, make_pair(-1,0));
+        vector <int> tempo_maquinas(m,0);
+        vector <int> molde_na_maquina(m,-1);
+        vector <int> tft (m,0);
 
-    for (int i = 0 ; i < n; i++){
+        for (int i = 0 ; i < n; i++){
 
-        for (int indice_maquina = 0 ; indice_maquina < m; indice_maquina++){
-            if (maquinas[indice_maquina].size() <= i){
-                continue;
-            } else {
-                int molde_tarefa = maquinas[indice_maquina][i].first;
+            for (int indice_maquina = 0 ; indice_maquina < m; indice_maquina++){
+                if (maquinas[indice_maquina].size() <= i){
+                    continue;
+                } else {
+                    int molde_tarefa = maquinas[indice_maquina][i].first;
 
-                if(controlador_moldes[molde_tarefa].first != indice_maquina && controlador_moldes[molde_tarefa].first != -1){
-                    if (controlador_moldes[molde_tarefa].second > tempo_maquinas[indice_maquina]){
-                        int diferenca_tempo = controlador_moldes[molde_tarefa].second - tempo_maquinas[indice_maquina];
-                        tempo_maquinas[indice_maquina] += diferenca_tempo + maquinas[indice_maquina][i].second + s;
-                        controlador_moldes[molde_tarefa] = make_pair(indice_maquina, tempo_maquinas[indice_maquina]);
-                        molde_na_maquina[indice_maquina]=molde_tarefa;
-                        tft[indice_maquina] += tempo_maquinas[indice_maquina];
-                    } else {
-                        tempo_maquinas[indice_maquina] += maquinas[indice_maquina][i].second + s;
-                        controlador_moldes[molde_tarefa] = make_pair(indice_maquina, tempo_maquinas[indice_maquina]);
-                        molde_na_maquina[indice_maquina]=molde_tarefa;
-                        tft[indice_maquina] += tempo_maquinas[indice_maquina];
-                    }
-                } else if (controlador_moldes[molde_tarefa].first == -1 || controlador_moldes[molde_tarefa].first == indice_maquina){
-                    if(molde_na_maquina[indice_maquina] != molde_tarefa && molde_na_maquina[indice_maquina] != -1){        
-                        tempo_maquinas[indice_maquina] += maquinas[indice_maquina][i].second+s;
-                        controlador_moldes[molde_tarefa] = make_pair(indice_maquina, tempo_maquinas[indice_maquina]);
-                        molde_na_maquina[indice_maquina]=molde_tarefa;
-                        tft[indice_maquina] += tempo_maquinas[indice_maquina];
-                    } else{
-                        tempo_maquinas[indice_maquina] += maquinas[indice_maquina][i].second;
-                        controlador_moldes[molde_tarefa] = make_pair(indice_maquina, tempo_maquinas[indice_maquina]);
-                        molde_na_maquina[indice_maquina]=molde_tarefa;
-                        tft[indice_maquina] += tempo_maquinas[indice_maquina];
+                    if(controlador_moldes[molde_tarefa].first != indice_maquina && controlador_moldes[molde_tarefa].first != -1){
+                        if (controlador_moldes[molde_tarefa].second > tempo_maquinas[indice_maquina]){
+                            int diferenca_tempo = controlador_moldes[molde_tarefa].second - tempo_maquinas[indice_maquina];
+                            tempo_maquinas[indice_maquina] += diferenca_tempo + maquinas[indice_maquina][i].second + s;
+                            controlador_moldes[molde_tarefa] = make_pair(indice_maquina, tempo_maquinas[indice_maquina]);
+                            molde_na_maquina[indice_maquina]=molde_tarefa;
+                            tft[indice_maquina] += tempo_maquinas[indice_maquina];
+                            tempo_da_tarefa_executada[solucao[indice_maquina][i]]+=tempo_maquinas[indice_maquina];
+                            tempo_de_espera += diferenca_tempo;
+                            troca_espera[solucao[indice_maquina][i]]= make_pair('W',diferenca_tempo);
+
+                            global_qtd_trocas[indice_maquina]++;
+                            global_tempo_espera_total[indice_maquina]+=diferenca_tempo;
+
+                            trocas++;
+                        } else {
+                            tempo_maquinas[indice_maquina] += maquinas[indice_maquina][i].second + s;
+                            controlador_moldes[molde_tarefa] = make_pair(indice_maquina, tempo_maquinas[indice_maquina]);
+                            molde_na_maquina[indice_maquina]=molde_tarefa;
+                            tft[indice_maquina] += tempo_maquinas[indice_maquina];
+                            tempo_da_tarefa_executada[solucao[indice_maquina][i]]+=tempo_maquinas[indice_maquina];
+                            troca_espera[solucao[indice_maquina][i]]= make_pair('S',s);
+
+                            global_qtd_trocas[indice_maquina]++;
+
+                            trocas++;
+                        }
+                    } else if (controlador_moldes[molde_tarefa].first == -1 || controlador_moldes[molde_tarefa].first == indice_maquina){
+                        if(molde_na_maquina[indice_maquina] != molde_tarefa && molde_na_maquina[indice_maquina] != -1){        
+                            tempo_maquinas[indice_maquina] += maquinas[indice_maquina][i].second + s;
+                            controlador_moldes[molde_tarefa] = make_pair(indice_maquina, tempo_maquinas[indice_maquina]);
+                            molde_na_maquina[indice_maquina]=molde_tarefa;
+                            tft[indice_maquina] += tempo_maquinas[indice_maquina];
+                            tempo_da_tarefa_executada[solucao[indice_maquina][i]]+=tempo_maquinas[indice_maquina];
+                            troca_espera[solucao[indice_maquina][i]]= make_pair('S',s);
+
+                            global_qtd_trocas[indice_maquina]++;
+
+                            trocas++;
+                        } else{
+                            tempo_maquinas[indice_maquina] += maquinas[indice_maquina][i].second;
+                            controlador_moldes[molde_tarefa] = make_pair(indice_maquina, tempo_maquinas[indice_maquina]);
+                            molde_na_maquina[indice_maquina] = molde_tarefa;
+                            tft[indice_maquina] += tempo_maquinas[indice_maquina];
+                            tempo_da_tarefa_executada[solucao[indice_maquina][i]]+=tempo_maquinas[indice_maquina];
+                        }
                     }
                 }
             }
         }
+
+
+
+    //MAKESPAN MODE!
+	/*int makespan = 0;
+
+    for (int i = 0; i < m; i++){
+        if(tempo_maquinas[i] > makespan){
+            makespan = tempo_maquinas[i];
+        }
     }
 
-	int tft_total = 0;
+    return makespan;*/
+
+    //MAKESPAN PUNISHIG TROCA
+    int makespan = 0;
+
+    for (int i = 0; i < m; i++){
+        global_makespans[i] = tempo_maquinas[i];
+        global_tft[i] = tft[i];
+        if(tempo_maquinas[i] > makespan){
+            makespan = tempo_maquinas[i];
+        }
+    }
+
+    return makespan * trocas;
+
+    //TFT MODE!
+    /*int tft_total = 0;
 
     for (int i = 0; i < m; i++){
         tft_total+=tft[i];
     }
 
-    return tft_total;
+    return tft_total;*/
 }
 
 class SampleDecoder {
