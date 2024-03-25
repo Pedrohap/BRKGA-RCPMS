@@ -27,6 +27,9 @@ vector <int> moldes;
 //Vector que contem as tarefas em ordem, ou seja, a tarefa[0] tem o tempo de processamento da tarefa 0
 vector <int> tarefas;
 
+//Contador Global de Gerações
+int global_generation = 0;
+
 void read_file(){
     cin >> n;
     cin >> m;
@@ -55,7 +58,7 @@ int main(int argc, char* argv[]) {
 	const double pm = 0.10;		// fraction of population to be replaced by mutants
 	const double rhoe = 0.70;	// probability that offspring inherit an allele from elite parent
 	const unsigned K = 3;		// number of independent populations
-	const unsigned MAXT = 4;	// number of threads for parallel decoding
+	const unsigned MAXT = 6;	// number of threads for parallel decoding
 	
 	SampleDecoder decoder;			// initialize the decoder
 
@@ -75,9 +78,9 @@ int main(int argc, char* argv[]) {
 	unsigned generation = 0;		// current generation
 	const unsigned X_INTVL = 100;	// exchange best individuals at every 100 generations
 	const unsigned X_NUMBER = 2;	// exchange top 2 best
-	const unsigned MAX_GENS = 10000;	// run for 1000 gens
+	const unsigned MAX_GENS = 1000;	// run for 1000 gens
 
-	int best_generation;
+	int best_generation = 0;
 	double best_fitness;
 	do {
 		algorithm.evolve();	// evolve the population for one generation
@@ -101,6 +104,8 @@ int main(int argc, char* argv[]) {
 		if((++generation) % X_INTVL == 0) {
 			algorithm.exchangeElite(X_NUMBER);	// exchange top individuals
 		}
+
+		global_generation++;
 	} while (generation < MAX_GENS);
 	
 	/*std::cout << "Best solution found has objective value = "
@@ -114,11 +119,11 @@ int main(int argc, char* argv[]) {
 	vector <vector <int>> solucao = rcpms.decodificador(chosen_one);
 
 	//Debug Printing
-	//rcpms.print_detalhado(solucao,time_span.count(),best_generation,MAX_GENS);
+	rcpms.print_detalhado(solucao,time_span.count(),best_generation,MAX_GENS);
 	//End of debug Printin
 
 	//Csv data export
-	rcpms.csv_export(solucao,time_span.count(),best_generation,MAX_GENS);
+	//rcpms.csv_export(solucao,time_span.count(),best_generation,MAX_GENS);
 	
 	return 0;
 }

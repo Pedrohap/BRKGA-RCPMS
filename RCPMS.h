@@ -36,12 +36,19 @@ private:
 
     int trocas = 0;
     int tempo_de_espera = 0;
+    int makespan_machine = 0;
+
     vector<int> tempo_da_tarefa_executada;
     vector< pair <char,int> > troca_espera;
     vector <int> global_makespans;
     vector <int> global_tft;
     vector <int> global_qtd_trocas;
     vector <int> global_tempo_espera_total;
+
+    //Geração do Vector que armazenara um historico de vetores que entraram na maquina
+    vector < vector <int> > historico_maquina;
+    int reentrada_cont = 0;
+    //
 
 public:
     
@@ -51,6 +58,11 @@ public:
     {}
 
     int makespan (vector <vector <int>> solucao){
+        //Geração do Vector que armazenara um historico de vetores que entraram na maquina
+        for (int i = 0; i < m; i++){
+            historico_maquina.push_back({});
+        }
+        //
 
         trocas = 0;
 
@@ -90,6 +102,8 @@ public:
                             global_tempo_espera_total[indice_maquina]+=diferenca_tempo;
 
                             trocas++;
+
+                            historico_maquina[indice_maquina].push_back(molde_tarefa);
                         } else {
                             tempo_maquinas[indice_maquina] += maquinas[indice_maquina][i].second + s;
                             controlador_moldes[molde_tarefa] = make_pair(indice_maquina, tempo_maquinas[indice_maquina]);
@@ -101,6 +115,8 @@ public:
                             global_qtd_trocas[indice_maquina]++;
 
                             trocas++;
+
+                            historico_maquina[indice_maquina].push_back(molde_tarefa);
                         }
                     } else if (controlador_moldes[molde_tarefa].first == -1 || controlador_moldes[molde_tarefa].first == indice_maquina){
                         if(molde_na_maquina[indice_maquina] != molde_tarefa && molde_na_maquina[indice_maquina] != -1){        
@@ -114,17 +130,25 @@ public:
                             global_qtd_trocas[indice_maquina]++;
 
                             trocas++;
+
+                            historico_maquina[indice_maquina].push_back(molde_tarefa);
                         } else{
                             tempo_maquinas[indice_maquina] += maquinas[indice_maquina][i].second;
                             controlador_moldes[molde_tarefa] = make_pair(indice_maquina, tempo_maquinas[indice_maquina]);
                             molde_na_maquina[indice_maquina] = molde_tarefa;
                             tft[indice_maquina] += tempo_maquinas[indice_maquina];
                             tempo_da_tarefa_executada[solucao[indice_maquina][i]]+=tempo_maquinas[indice_maquina];
+
+                            if (historico_maquina[indice_maquina].size() == 0 || historico_maquina[indice_maquina][historico_maquina[indice_maquina].size()-1] != molde_tarefa){
+                                historico_maquina[indice_maquina].push_back(molde_tarefa);
+                            }
                         }
                     }
                 }
             }
         }
+
+        
 
         int makespan = 0;
 
@@ -133,6 +157,22 @@ public:
             global_tft[i] = tft[i];
             if(tempo_maquinas[i] > makespan){
                 makespan = tempo_maquinas[i];
+                makespan_machine = i;
+            }
+        }
+
+            
+        vector <int> punicao_check;
+        if (historico_maquina[makespan_machine].size()>1){
+            for (int i = 0; i < historico_maquina[makespan_machine].size() ; i++){
+                punicao_check.push_back(historico_maquina[makespan_machine][i]);
+
+                for (int j = 0 ; j < punicao_check.size()-1 ; j++){
+                    if (punicao_check[j] == historico_maquina[makespan_machine][i]){
+                        reentrada_cont++;
+                    }
+                }
+
             }
         }
 
@@ -323,7 +363,15 @@ public:
 
         }
 
+        cout << "Historico de moldes da Maquina " << makespan_machine << ": ";
+        for (int i = 0; i < historico_maquina[makespan_machine].size() ; i++){
+            cout <<historico_maquina[makespan_machine][i] << " ";
+        }
+        cout << endl;
+
+        cout << "Contador de reentradas: " << reentrada_cont << endl;
         cout << "TFT: " << tft(solucao) << endl;
+        cout << "Numero da Maquina do Mekespan:" << makespan_machine << endl;
         cout << "Makespan: " << value_makespan << endl;
         cout << "Quantidade de trocas: " << trocas << endl;
         cout << "Tempo de espera total: " << tempo_de_espera << endl;
@@ -331,6 +379,13 @@ public:
         cout << "Tempo de execução: " << time << "(s)" << endl;
         cout << "Melhor Geração: " << best_generation << endl;
         cout << "Total de Gerações: " << total_generations;
+
+        cout << "-----------------------------------------------------------------" << endl;
+
+        cout << "Solução minimizada para debug:" << endl;
+        
+        print_solucao(solucao);
+
     }
 
     void csv_export(vector< vector <int> > solucao, double time, int best_generation,int total_generations)
